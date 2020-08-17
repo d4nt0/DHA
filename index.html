@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<style>
+    body{
+        background-color: gray;
+        margin: 0;
+        padding: 0;
+    }
+    form{
+        margin-top: 20px;
+        color: white;
+        background-color: #343A40;
+        text-align: center;
+    }
+    .a> label{
+        display: table-cell;
+        vertical-align: middle;
+        text-indent: 547px;
+    }
+    .a> input{
+        margin-bottom: 5px;   
+        width: 20%;
+    }
+    .calc{
+        font-size: 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .show{
+        font-size: 15px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .clean{
+        font-size: 15px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .other {
+        background-color: #171a1c;
+        font-size: 25px;
+        margin-right: 500px;
+        margin-left: 500px;
+    }
+    #alert1{
+        display: none;
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+	#alert2{
+        display: none;
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+	#alert3{
+        display: none;
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }	
+</style>
+
+<script type="text/javascript">
+  let salarios = []
+  
+  function salvar(){
+      var salario = []
+      var a = document.getElementById('valor').value
+      var b = document.getElementById('qnt').value
+      var f = document.getElementById('nome').value
+      var c = a * b
+      console.log(a,b,c)
+      salario.push(a,b,f)
+
+        var alert1 = document.getElementById('alert1');
+        var alert2 = document.getElementById('alert2');
+        var alert3 = document.getElementById('alert3');
+
+        if (f == "") {
+                alert1.style.display = "block";
+			}
+		if (a == "") {
+                alert2.style.display = "block";
+			}
+		if (b == "") {
+                alert3.style.display = "block";
+			}
+    
+      document.getElementById("salb").value = c
+      if(c<22847.76){
+          document.getElementById("sali").value = c
+      
+      }else{
+          if(c<33919.80){
+              let d = c*0.925
+              document.getElementById("sali").value = d
+              
+          }
+          if(c>33919.80 || c<45012.6){
+              let e = c*0.85
+              document.getElementById("sali").value = e
+              
+          }if(c>45012.6 || c<55976.16){
+              let w = c*0.775
+              document.getElementById("sali").value = w
+             
+          }else{
+              let r = c* 0.725
+              document.getElementById("sali").value = r
+           
+          }
+      }
+   salarios.push(salario)
+
+  }
+ function salvarb () {
+     var len = salarios.length
+for(var i = 0; i < len; ++i) {
+document.getElementById("div").innerHTML = ("Salários : " + salarios[i]);
+}}
+  </script>
+
+    <head>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">EMPRESA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="empresa.html">Página Inicial <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </head>
+    <body>
+        <form class="form">
+            <div class="a">
+                <label class="nome">Nome:</label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div class="a">
+                <label class="valor">Valor de Horas Trabalhadas:</label>
+                <input type="number" id="valor" name="valor">
+            </div>
+            <div class="a">
+                <label class="qnt">Qnt. Horas Trabalhadas:</label>
+                <input type="number" id="qnt" name="qnt">
+            </div>
+            <div class="a">
+                <label class="salb">Salário Bruto:</label>
+                <input type="number" id="salb" name="salb">
+            </div>
+            <div class="a">
+                <label class="sali">Salário Líquido:</label>
+                <input type="number" id="sali" name="sali">
+            </div>
+            <div class="a">
+                <button type="button" class="calc" onclick="salvar()">Calcular Salário</button>
+            </div>
+            <div class="a"> 
+                <button type="button" class="show" onclick="salvarb()">Mostrar Salários Calculados</button>
+            </div>
+            <div class="a">
+                <button type="reset" class="clean">Limpar Campos</button>
+            </div>
+            <div class="other" id="div">Salários: </div>
+
+            <div id="alert1">
+                <span class="closebtn"
+                    onclick="this.parentElement.style.display = 'none';">&times;</span>
+                <strong>Você não inseriu seu nome.</strong>
+            </div>
+            <div id="alert2">
+                <span class="closebtn"
+                    onclick="this.parentElement.style.display = 'none';">&times;</span>
+                <strong>Você não inseriu o valor de horas trabalhadas.</strong>
+            </div>
+            <div id="alert3">
+                <span class="closebtn"
+                    onclick="this.parentElement.style.display = 'none';">&times;</span>
+                <strong>Você não inseriu a quantidade de horas trabalhadas.</strong>
+            </div>
+
+        </form>
+    </body>
+
+</html>
